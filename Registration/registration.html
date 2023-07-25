@@ -1,0 +1,208 @@
+<html>
+    <head>
+        <script>
+
+            function validateData1(){
+                var name = document.getElementById("b1").value
+                                
+                if(name === "" || typeof(name) == "undefined"){
+                    document.getElementById("e1").innerHTML = "* Name cannot be bank";
+                    return false;
+                }
+                else{
+                document.getElementById("e1").innerHTML = "*";
+                return true;
+                }
+
+            }
+
+            function validateData2(){
+                var adr = document.getElementById("b2").value;
+                
+                if(adr === "" || typeof(adr) =="undefined"){
+                    document.getElementById("e2").innerHTML = "* Address cannot be bank";
+                    return false;
+                }
+                else{
+                document.getElementById("e2").innerHTML = "*";
+                return true;
+                }
+            }
+
+            function validateData3() {
+                var dateElement = document.getElementById("b3");
+                var dateValue = dateElement.value;
+                var inputDate = new Date(dateValue);
+                var referenceDate = new Date("2011/01/01");
+                
+                
+                if (inputDate > referenceDate) {
+                    
+                    document.getElementById("e3").innerHTML = "* Date must be before 12 years";
+                    return false;
+                } else if((inputDate < referenceDate)){
+                    
+                    document.getElementById("e3").innerHTML = "*";
+                    return true;
+                }
+                document.getElementById("e3").innerHTML = "* Date cannot be blank";
+                    return false;
+            }
+
+
+            function validateData4(){
+                var conElement = document.getElementById("b4");
+                var num = conElement.value;
+                
+                if(num === "" || isNaN(num)){
+                    document.getElementById("e4").innerHTML = "* Contact number must be a number";
+                    return false;
+                }
+                else{
+                document.getElementById("e4").innerHTML = "*";
+                return true;
+                }
+            }
+
+            function validateData5(){
+                var radElement = document.getElementsByName("gen");
+                document.getElementById("e5").innerHTML = "* Please select the Gender";
+                for(var v of radElement){
+                    if(v.checked){
+                        document.getElementById("e5").innerHTML = "*";
+                        return true;
+                    
+                    }
+                    
+                   
+                }
+                return false;
+                
+            }
+
+            function validateData6(){
+                var selElement = document.getElementById("c1");
+                
+                var opArr = selElement.selectedIndex;
+                
+                document.getElementById("e6").innerHTML = "* Please select the Course";
+                if(opArr == 0){
+                    document.getElementById("e6").innerHTML = "* Please select the Course";
+                    return false;
+                }
+                document.getElementById("e6").innerHTML = "*";
+                return true;
+            }
+
+
+
+            function validateData(){
+                
+                flag1 = validateData1()    
+                flag2 = validateData2()                
+                flag3 = validateData3()                
+                flag4 = validateData4()                
+                flag5 = validateData5()           
+                flag6 = validateData6()
+             
+
+                if(flag1 && flag2 && flag3 && flag4 && flag5 && flag6){
+                    alert("All Data valid")
+                    document.getElementById("ans").innerHTML = "All data is verified and validated";
+                    
+                }
+                else{
+                    alert("Validation failed")
+                    document.getElementById("ans").innerHTML = "Please refer to the errors and try to enter the correct data";
+                }
+                
+                
+            }
+        </script>
+
+    </head>
+    <body>
+        
+        <table>
+            <form>
+            <tr>
+                <td >
+                    <a href="">login</a>
+                </td>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <input type="text" id="b1" name="b1" ><span id="e1" style="color: red;">*</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td >
+                    <a href="">Register</a>
+                </td>
+                <td>
+                    Address:
+                </td>
+                <td>
+                    <input type="text" id="b2" name="b2" ><span id="e2" style="color: red;">*</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    DOB:
+                </td>
+                <td>
+                    <input type="date" id="b3" name="b3"><span id="e3" style="color: red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    Contact No:
+                </td>
+                <td>
+                    <input type="tel" id="b4" name="b4"><span id="e4" style="color: red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    Gender:
+                </td>
+                <td>
+                    <input type="radio" id="m" name="gen" value="m">&nbsp;<label for="m">Male</label>&emsp;<input type="radio" id="f" name="gen" value="f">&nbsp;<label for="f">Female</label><span id="e5" style="color: red;">*</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>Course</td>
+                <td>
+                    <select name="crs" id="c1">
+                        <option value="o">---Select Course---</option>
+                        <option value="o1">Fine Arts</option>
+                        <option value="o2">Digital Marketing</option>
+                        <option value="o3">Fashion Designing</option>
+                    </select><span id="e6" style="color: red;">*</span>
+                </td>
+            </tr>
+           
+            <tr>
+                <td></td>
+                <td >
+                    <input type="button" value="Submit" onclick="validateData()">
+                </td>
+                <td>
+                    <input type="reset" value="reset">
+                </td>
+            </tr>
+        </form>
+        </table>
+        <h2 id="ans"></h2>
+    </body>
+</html>
